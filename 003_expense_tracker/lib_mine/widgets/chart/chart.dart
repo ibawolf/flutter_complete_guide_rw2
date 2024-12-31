@@ -69,7 +69,7 @@ class Chart extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Row(
-            children: buckets // for ... in
+            children: buckets
                 .map(
                   (bucket) => Expanded(
                     child: Padding(
