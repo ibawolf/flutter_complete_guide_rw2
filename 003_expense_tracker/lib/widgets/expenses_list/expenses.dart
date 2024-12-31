@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -52,7 +53,7 @@ class _ExpenseState extends State<Expenses> {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 5),
         content: const Text('Expense deleted.'),
         action: SnackBarAction(
           label: 'Undo',
@@ -73,7 +74,6 @@ class _ExpenseState extends State<Expenses> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter ExpenseTracker'),
-        backgroundColor: const Color.fromARGB(255, 232, 182, 245),
         actions: [
           IconButton(
             onPressed: _openAddExpenseOverlay,
@@ -84,7 +84,7 @@ class _ExpenseState extends State<Expenses> {
       body: Column(
         children: [
           SizedBox(height: 40),
-          const Text('The Chart'),
+          Chart(expenses: _registeredExpenses),
           Expanded(
             child: ExpensesList(
               expenses: _registeredExpenses,

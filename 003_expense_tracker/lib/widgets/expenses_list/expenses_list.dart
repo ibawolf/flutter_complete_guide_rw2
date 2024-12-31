@@ -15,19 +15,24 @@ class ExpensesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (expenses.length <= 0) {
+    if (expenses.isEmpty) {
       return Center(child: Text("No expenses found, Start adding some!"));
     } else {
       return ListView.builder(
         itemCount: expenses.length,
-        itemBuilder:
-            (ctx, index) => Dismissible(
-              onDismissed: (direction) {
-                onRemoveExpense(expenses[index]);
-              },
-              key: ValueKey(expenses[index]),
-              child: ExpenseItem(expenses[index]),
+        itemBuilder: (ctx, index) => Dismissible(
+          onDismissed: (direction) {
+            onRemoveExpense(expenses[index]);
+          },
+          key: ValueKey(expenses[index]),
+          background: Container(
+            color: Theme.of(context).colorScheme.error.withOpacity(0.75),
+            margin: EdgeInsets.symmetric(
+              horizontal: Theme.of(context).cardTheme.margin!.horizontal,
             ),
+          ),
+          child: ExpenseItem(expenses[index]),
+        ),
       );
     } // else
   } // Widget
